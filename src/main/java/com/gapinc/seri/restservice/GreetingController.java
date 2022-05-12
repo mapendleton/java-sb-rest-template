@@ -85,11 +85,10 @@ public class GreetingController {
     }
 
     @PatchMapping("/greetings/{id}/{content}")
-    public ResponseEntity<?> updateGreeting(@PathVariable Integer id,@PathVariable String content/*@RequestBody Greeting newGreeting*/) {
+    public ResponseEntity<?> updateGreeting(@PathVariable Integer id,@PathVariable String content) {
         //get Greeting greeting from a db somewhere
         Greeting greeting = new Greeting(id,greeting_dict.get(id));
-        //update greeting ... greeting.setContent(content);
-        //greeting.setContent(newGreeting.getContent()); ... if @Request body is used instead
+        //update greeting
         greeting.setContent(content);
         //save greeting in db
         return new ResponseEntity<>(assembler.toModel(greeting),HttpStatus.OK);
